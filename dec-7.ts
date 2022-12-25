@@ -70,14 +70,12 @@ function getNormalizeDirectories(tree: FileTree) {
   function normalize(key: string, currentTree: Object) {
     normalizedDirectories[key] = 0;
     Object.keys(currentTree).forEach((x, i) => {
-      //   console.log(x, typeof currentTree[x]);
 
       if (typeof currentTree[x] === "object") {
         normalizedDirectories[key] =
           normalizedDirectories[key] +
           normalize(x + Math.random(), currentTree[x]);
       } else {
-        // console.log(normalizedDirectories[x], currentTree[x]);
         normalizedDirectories[key] =
           normalizedDirectories[key] + currentTree[x];
       }
