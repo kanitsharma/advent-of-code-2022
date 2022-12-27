@@ -126,3 +126,5 @@ function detectScenicScore(input: string) {
 
   return scenicScores.sort((a, b) => b - a)[0];
 }
+
+export {}
