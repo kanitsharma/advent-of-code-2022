@@ -40,7 +40,6 @@ function renderCRT(input: string) {
   const cycles = getCycles(input);
   let X = 1;
   let fnStack: Array<number[]> = []; //[Register, stepstoexecute]
-  const cycleToCheck = [20, 60, 100, 140, 180, 220];
   const CRTRow: Array<string[]> = [];
 
   for (let j = 0; j < 6; j++) {
