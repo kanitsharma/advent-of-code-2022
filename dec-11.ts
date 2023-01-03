@@ -95,7 +95,7 @@ function startMonkeyBusinessSecond(input: string) {
 
         const updatedWorry = worry % mod
 
-        if (worry % monkey.Test[0] === 0) {
+        if (updatedWorry % monkey.Test[0] === 0) {
           Monkeys[monkey.Test[1]].Items.push(updatedWorry);
         } else {
           Monkeys[monkey.Test[2]].Items.push(updatedWorry);

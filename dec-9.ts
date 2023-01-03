@@ -18,6 +18,7 @@ function getNextTailPos(h: Array<number>, t: Array<number>) {
         t[x] = t[x] + 1;
         t[y] = t[y] + 1;
       } else if (diffY <= -1) {
+        
         t[x] = t[x] + 1;
         t[y] = t[y] - 1;
       }
