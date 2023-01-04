@@ -229,6 +229,8 @@ function addGraph(
 function PopulateGraph(input: string) {
   const map = getHeightMap(input);
   const [start, end] = getStartAndEndPos(map);
+  map[start[0]][start[1]] = "a";
+  map[end[0]][end[1]] = "z";
 
   for (let i = 0; i <= map.length - 1; i++) {
     for (let j = 0; j <= map[i].length - 1; j++) {
@@ -286,19 +288,9 @@ function getNeighbors(currentPos: [number, number], map: string[][]) {
 
   for (const pos of positions) {
     if (peek(map, pos)) {
-      if (currentVal === "S" && peek(map, pos) === "a") {
-        edges.push(pos.join());
-        continue;
-      }
-      if (peek(map, pos).charCodeAt(0) - currentVal.charCodeAt(0) === 1) {
-        edges.push(pos.join());
-        continue;
-      }
-      if (peek(map, pos).charCodeAt(0) - currentVal.charCodeAt(0) === 0) {
-        edges.push(pos.join());
-        continue;
-      }
-      if (currentVal === "z" && peek(map, pos) === "E") {
+      if (
+        peek(map, pos).charCodeAt(0) - currentVal.charCodeAt(0) <= 1
+      ) {
         edges.push(pos.join());
         continue;
       }
@@ -311,6 +303,8 @@ function getNeighbors(currentPos: [number, number], map: string[][]) {
 function BFS(input: string) {
   const map = getHeightMap(input);
   const [start, end] = getStartAndEndPos(map);
+  map[start[0]][start[1]] = "a";
+  map[end[0]][end[1]] = "z";
 
   let queue: Array<string> = [start.join()];
   const visited: Record<string, boolean> = {
@@ -341,14 +335,14 @@ function BFS(input: string) {
         }
         path.push(u);
         path.reverse();
-        console.log(path.length - 1)
+        console.log(path.length - 1);
         return;
       }
       predecessor[v] = u;
       queue.push(v);
     }
   }
-  console.log(start, end)
+  console.log(start, end);
 }
 
 BFS(input);
