@@ -346,3 +346,5 @@ function BFS(input: string) {
 }
 
 BFS(input);
+
+export {}
