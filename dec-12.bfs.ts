@@ -1,3 +1,9 @@
+const input = `Sabqponm
+abcryxxl
+accszExk
+acctuvwj
+abdefghi`;
+
 function getHeightMap(input: string) {
   return input.split("\n").map((x) => x.split(""));
 }
@@ -108,20 +114,24 @@ function getSteps(input: string) {
 function bfsStepsOnly(start: string, end: string, map: string[][]) {
   const visited = new Set<string>().add(start);
   const queue: Array<[string, number]> = [[start, 0]];
+  const edges = [0];
 
   while (queue.length > 0) {
     const current = queue.shift() as [string, number];
+    const edge = edges.shift() as number;
     const currentMove = current?.[0].split(",").map(Number) as [number, number];
     const possibleMoves = getNeighbors(currentMove, map, visited);
+    console.log(edges);
 
     for (const move of possibleMoves) {
       if (move === end) {
-        return current[1] + 1;
+        return edge + 1;
       }
 
       if (!visited.has(move)) {
         visited.add(move);
         queue.push([move, current[1] + 1]);
+        edges.push(edge + 1);
       }
     }
   }
@@ -146,13 +156,17 @@ function getStepsSecond(input: string) {
   const aPostions = getAllAPositions(map);
   const [start, end] = getStartAndEndPos(map);
 
-  const allDistances = aPostions.map((x) =>
-    bfsStepsOnly(x.join(), end.join(), map)
-  );
+  //   const allDistances = aPostions.map((x) =>
+  //     bfsStepsOnly(x.join(), end.join(), map)
+  //   );
 
-  return allDistances.sort()[0];
+  //   return allDistances.sort()[0];
+
+  return bfsStepsOnly(start.join(), end.join(), map);
 }
 
-// console.log(getStepsSecond(input));
+console.log(getStepsSecond(input));
+
+console.log();
 
 export {};
