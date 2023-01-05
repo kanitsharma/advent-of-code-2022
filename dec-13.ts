@@ -50,9 +50,9 @@ function compare2(firstList, secondList) {
 }
 
 function getCorrectOrderSum(input: string) {
-  const packetPairList = parsePacketList(input);
+  const packetPairList = parsePacketList(input) as Array<[any, any]>;
   return packetPairList.reduce(
-    (acc: number, packetPair: [number, number], i) => {
+    (acc: number, packetPair, i) => {
       if (compare2(...packetPair)) {
         return acc + (i + 1);
       }
