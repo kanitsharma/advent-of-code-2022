@@ -166,8 +166,7 @@ function runSimulationSecond(input: string) {
   const [gridWithSand, units] = pourSandSecond(grid, startX, 500, 2);
 
   console.log(units);
-    return gridWithSand.map((y) => y.join(" ")).join("\n");
-  return;
+  return gridWithSand.map((y) => y.join(" ")).join("\n");
 }
 
 // console.log(runSimulationSecond(input));
